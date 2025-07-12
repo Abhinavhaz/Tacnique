@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Employee Form</title>
-  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div class="form-container">
     <header class="form-header">
       <h1 id="formTitle">Add Employee</h1>
-      <button class="btn btn-secondary back-btn" onclick="window.location.href='dashboard.ftl'">
+      <button class="btn btn-secondary back-btn" onclick="window.location.href='dashboard.html'">
         <span class="btn-icon">←</span> Back to Directory
       </button>
     </header>
@@ -28,7 +28,7 @@
               placeholder="Enter first name"
               required
               autocomplete="given-name"
-            >
+            />
             <div class="error-message" id="firstNameError"></div>
           </div>
 
@@ -42,7 +42,7 @@
               placeholder="Enter last name"
               required
               autocomplete="family-name"
-            >
+            />
             <div class="error-message" id="lastNameError"></div>
           </div>
 
@@ -56,7 +56,7 @@
               placeholder="Enter email address"
               required
               autocomplete="email"
-            >
+            />
             <div class="error-message" id="emailError"></div>
           </div>
 
@@ -84,7 +84,7 @@
               class="form-input"
               placeholder="Enter job role"
               required
-            >
+            />
             <div class="error-message" id="roleError"></div>
           </div>
         </div>
@@ -93,7 +93,7 @@
           <button type="submit" class="btn btn-primary" id="submitBtn">
             <span class="btn-icon">💾</span> Save Employee
           </button>
-          <button type="button" class="btn btn-secondary" onclick="window.location.href='dashboard.ftl'">
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='dashboard.html'">
             Cancel
           </button>
           <button type="reset" class="btn btn-outline" id="resetBtn">
@@ -107,6 +107,6 @@
   <!-- Success/Error Messages -->
   <div id="messageContainer" class="message-container"></div>
 
-  <script src="../public/js/form.js"></script>
+  <script src="..public/js/form.js"></script>
 </body>
 </html>
