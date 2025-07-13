@@ -12,6 +12,7 @@ class EmployeeDirectory {
     this.currentView = "grid";
     this.deleteEmployeeId = null;
 
+
     this.init();
   }
 
@@ -65,6 +66,9 @@ class EmployeeDirectory {
     if (data) {
       this.employees = JSON.parse(data);
       this.filteredEmployees = [...this.employees];
+    } else {
+      // If no data in localStorage, save the initial window.employeeData
+      this.saveToLocalStorage();
     }
   }
 
@@ -243,9 +247,17 @@ class EmployeeDirectory {
   }
 
   editEmployee(id) {
-    // Check if we're in test mode (HTML files) or production mode (FTL files)
-    const isTestMode = window.location.pathname.includes('test-dashboard.html');
-    const formUrl = isTestMode ? `test-form.html?id=${id}` : `form.ftl?id=${id}`;
+    // Check if we're using HTML files or FTL files
+    const currentPath = window.location.pathname;
+    let formUrl;
+
+    if (currentPath.includes('test-dashboard.html')) {
+      formUrl = `test-form.html?id=${id}`;
+    } else if (currentPath.includes('templates/dashboard.html')) {
+      formUrl = `form.html?id=${id}`;
+    } else {
+      formUrl = `form.ftl?id=${id}`;
+    }
     window.location.href = formUrl;
   }
 
@@ -354,8 +366,17 @@ class EmployeeDirectory {
     // Ctrl/Cmd + N to add new employee
     if ((e.ctrlKey || e.metaKey) && e.key === "n") {
       e.preventDefault();
-      const isTestMode = window.location.pathname.includes('test-dashboard.html');
-      const formUrl = isTestMode ? 'test-form.html' : 'form.ftl';
+      const currentPath = window.location.pathname;
+      let formUrl;
+
+      if (currentPath.includes('test-dashboard.html')) {
+        formUrl = 'test-form.html';
+      } else if (currentPath.includes('templates/dashboard.html')) {
+        formUrl = 'form.html';
+      } else {
+        formUrl = 'form.ftl';
+      }
+
       window.location.href = formUrl;
     }
   }

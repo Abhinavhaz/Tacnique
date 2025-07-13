@@ -43,7 +43,18 @@ class EmployeeForm {
     } else {
       this.showMessage('Employee not found', 'error');
       setTimeout(() => {
-        window.location.href = 'dashboard.ftl';
+        const currentPath = window.location.pathname;
+        let dashboardUrl;
+
+        if (currentPath.includes('test-form.html')) {
+          dashboardUrl = 'test-dashboard.html';
+        } else if (currentPath.includes('templates/form.html')) {
+          dashboardUrl = 'dashboard.html';
+        } else {
+          dashboardUrl = 'dashboard.ftl';
+        }
+
+        window.location.href = dashboardUrl;
       }, 2000);
     }
   }
@@ -212,9 +223,17 @@ class EmployeeForm {
 
       // Redirect after a short delay to show the success message
       setTimeout(() => {
-        // Check if we're in test mode or production mode
-        const isTestMode = window.location.pathname.includes('test-form.html');
-        const dashboardUrl = isTestMode ? 'test-dashboard.html' : 'dashboard.ftl';
+        const currentPath = window.location.pathname;
+        let dashboardUrl;
+
+        if (currentPath.includes('test-form.html')) {
+          dashboardUrl = 'test-dashboard.html';
+        } else if (currentPath.includes('templates/form.html')) {
+          dashboardUrl = 'dashboard.html';
+        } else {
+          dashboardUrl = 'dashboard.ftl';
+        }
+
         window.location.href = dashboardUrl;
       }, 1500);
 
@@ -260,8 +279,17 @@ class EmployeeForm {
     // Escape to go back
     if (e.key === 'Escape') {
       if (confirm('Are you sure you want to leave? Any unsaved changes will be lost.')) {
-        const isTestMode = window.location.pathname.includes('test-form.html');
-        const dashboardUrl = isTestMode ? 'test-dashboard.html' : 'dashboard.ftl';
+        const currentPath = window.location.pathname;
+        let dashboardUrl;
+
+        if (currentPath.includes('test-form.html')) {
+          dashboardUrl = 'test-dashboard.html';
+        } else if (currentPath.includes('templates/form.html')) {
+          dashboardUrl = 'dashboard.html';
+        } else {
+          dashboardUrl = 'dashboard.ftl';
+        }
+
         window.location.href = dashboardUrl;
       }
     }

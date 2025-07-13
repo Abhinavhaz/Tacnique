@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Test</title>
+</head>
+<body>
+  <h1>Debug Test</h1>
+  <button onclick="checkLocalStorage()">Check localStorage</button>
+  <button onclick="clearLocalStorage()">Clear localStorage</button>
+  <button onclick="setTestData()">Set Test Data</button>
+  <button onclick="testEditUrl()">Test Edit URL</button>
+  
+  <div id="output" style="margin-top: 20px; padding: 10px; background: #f0f0f0; white-space: pre-wrap;"></div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById('output');
+      output.textContent += new Date().toLocaleTimeString() + ': ' + message + '\n';
+      console.log(message);
+    }
+
+    function checkLocalStorage() {
+      const data = localStorage.getItem('employeeDirectory');
+      log('localStorage data: ' + (data ? JSON.stringify(JSON.parse(data), null, 2) : 'null'));
+    }
+
+    function clearLocalStorage() {
+      localStorage.removeItem('employeeDirectory');
+      log('localStorage cleared');
+    }
+
+    function setTestData() {
+      const testData = [
+        { id: 1, firstName: "John", lastName: "Doe", email: "john.doe@example.com", department: "Engineering", role: "Senior Developer" },
+        { id: 2, firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", department: "HR", role: "HR Manager" }
+      ];
+      localStorage.setItem('employeeDirectory', JSON.stringify(testData));
+      log('Test data set in localStorage');
+    }
+
+    function testEditUrl() {
+      const testId = 1;
+      const url = `templates/form.html?id=${testId}`;
+      log('Would navigate to: ' + url);
+      
+      // Test URL parsing
+      const testUrl = new URL(window.location.origin + '/templates/form.html?id=' + testId);
+      const params = new URLSearchParams(testUrl.search);
+      const id = params.get('id');
+      log('Parsed ID from URL: ' + id);
+    }
+
+    // Auto-check on load
+    window.onload = function() {
+      log('Page loaded');
+      checkLocalStorage();
+    };
+  </script>
+</body>
+</html>
